@@ -16,7 +16,7 @@ export default function Navbar() {
     <img src={searchbtn} alt="Search" />
   
         </span>
-        <input type="text" placeholder="Search Facebook" className="fb-search-input" />
+        <input type="text" name='search' id='search' placeholder="Search Facebook" className="fb-search-input" />
       </div>
       </div>
      

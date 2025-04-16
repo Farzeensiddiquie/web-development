@@ -11,7 +11,7 @@ export default function LeftSideBar() {
           <p>Your shortcuts</p>
           </div>
     <div className='sidebar-shortcuts'>
-      <img src={shortcut} className='shortcut-icon'/>
+      <img src={shortcut} alt='img' className='shortcut-icon'/>
       <h4>8 Ball Pool</h4>
     </div>
     <div className='sidebar-copyright-links'>

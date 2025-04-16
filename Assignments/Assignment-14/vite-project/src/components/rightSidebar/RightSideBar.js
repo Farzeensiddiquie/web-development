@@ -12,14 +12,14 @@ export default function RightSideBar() {
        <div className='sponsored'>
         <p className='sponsored-h'>Sponsored</p>
         <div className='info1'>
-          <img src={img1} className='info1-img'/>
+          <img style={{width:'113px',height:'61px'}} src={img1} alt='img' className='info1-img'/>
           <span className='info-details'>
             <p className='info'>Modern Prop Trading</p>
           <p className='domain'>ftmo.com</p>
           </span>
         </div>
         <div className='info2'>
-        <img src={img2} className='info2-img'/>
+        <img src={img2} alt='img' className='info2-img'/>
         <span className='info-details'>
         <p className='info'>RS4,999 | The Wave <br/>Pro Ear Buds represent the next generation...</p>
         <p className='domain'>zerolifestyle.co</p>
@@ -30,7 +30,7 @@ export default function RightSideBar() {
         < div className='contacts-searchMenu'>
           <p className='contacts-h'>Contacts</p>
         <div className='contacts-search'><img src={searchbtn} alt="Search" />
-        <img src={contactsMenu} alt="Search" /></div>
+        <img  src={contactsMenu} alt="Search" /></div>
         </div>
         <div className='contact'>
         <img src={contactimg} alt="Search" />

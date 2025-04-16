@@ -31,7 +31,7 @@ const Links = [
         <div className='sidebar-links'>
             {Links.map((link, index) => (
             <div key={index} className='sidebar-link'>
-                <img className='sidebar-icon'src={link.icon}/>
+                <img className='sidebar-icon' alt='img' src={link.icon}/>
                 <span className='sidebar-name'>{link.name}</span>
             </div>
             ))}
