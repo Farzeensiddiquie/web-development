@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import  {fetchRecipes}  from "../../features/counter/RecipesSlice";
+import { fetchRecipes } from "../../features/counter/RecipesSlice";
 import RecipeCard from "../recipeCard/RecipeCard";
 import "./Gallery.css";
-
 
 const Gallery = () => {
   const dispatch = useDispatch();
@@ -25,21 +24,25 @@ const Gallery = () => {
 
   return (
     <>
-    
       <div className="gallery">
         {status === "loading" && <p>Loading recipes...</p>}
         {status === "failed" && <p>Error: {error}</p>}
-        {status === "succeeded" &&
-          recipes.map((recipe) => (
-            <div
-              key={recipe.id}
-              className="thumbnail-card"
-              onClick={() => setSelectedRecipe(recipe)}
-            >
-              <img src={recipe.image} alt={recipe.name} />
-              <div className="caption">{recipe.name}</div>
-            </div>
-          ))}
+        {status === "succeeded" && (
+          recipes.length > 0 ? (
+            recipes.map((recipe) => (
+              <div
+                key={recipe.id}
+                className="thumbnail-card"
+                onClick={() => setSelectedRecipe(recipe)}
+              >
+                <img src={recipe.image} alt={recipe.name} />
+                <div className="caption">{recipe.name}</div>
+              </div>
+            ))
+          ) : (
+            <p>No recipes found.</p> // 🧡 Added if no matching recipe
+          )
+        )}
       </div>
 
       {selectedRecipe && (

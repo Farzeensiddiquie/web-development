@@ -1,8 +1,32 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import "./Hero.css";
+import { fetchRecipes, fetchRecipesBySearch } from "../../features/counter/RecipesSlice";
 
 const Hero = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const dispatch = useDispatch();
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+
+    // Instant search when typing
+    if (value.trim() === '') {
+      dispatch(fetchRecipes()); // show all when empty
+    } else {
+      dispatch(fetchRecipesBySearch(value)); // search live
+    }
+  };
+
+  const handleSearchClick = () => {
+    if (searchTerm.trim() === '') {
+      dispatch(fetchRecipes()); // show all when empty
+    } else {
+      dispatch(fetchRecipesBySearch(searchTerm)); // search when button clicked
+    }
+  };
 
   return (
     <header className="hero-container">
@@ -25,8 +49,13 @@ const Hero = () => {
         <h1>Find Your Next Favorite Recipe</h1>
         <p>From quick snacks to gourmet meals, search your cravings now!</p>
         <div className="search-bar">
-          <input type="text" placeholder="Search recipes..." />
-          <button>Search</button>
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={handleInputChange}
+            placeholder="Search recipes..."
+          />
+          <button onClick={handleSearchClick}>Search</button> {/* Search button */}
         </div>
       </div>
     </header>
@@ -34,4 +63,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
