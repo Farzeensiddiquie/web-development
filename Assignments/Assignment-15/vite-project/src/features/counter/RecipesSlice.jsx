@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-// Fetch all recipes
+
+
 export const fetchRecipes = createAsyncThunk(
   'recipes/fetchRecipes',
   async () => {
@@ -10,7 +11,7 @@ export const fetchRecipes = createAsyncThunk(
   }
 );
 
-// Fetch recipes by search query
+
 export const fetchRecipesBySearch = createAsyncThunk(
   'recipes/fetchRecipesBySearch',
   async (searchTerm) => {
@@ -42,7 +43,7 @@ const recipesSlice = createSlice({
         state.error = action.error.message;
       })
 
-      // Add this part for search
+
       .addCase(fetchRecipesBySearch.pending, (state) => {
         state.status = 'loading';
       })

@@ -1,16 +1,10 @@
 import React from 'react'
 import './App.css'
-import Gallery from './components/recipesgallery/Gallery';
-import Footer from './components/footer/Footer';
-import Hero from './components/heroSection/Hero';
+import Routing from './routing/Routing'
 const App = () => {
  
   return (
-   <>
-   <Hero/>
-      <Gallery />
-      <Footer/>
-      </>
+   <Routing/>
   );
 };
 
