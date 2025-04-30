@@ -5,6 +5,7 @@
     left: 0;
     width: 100%;
     height: 100%;
+
     background: rgba(0, 0, 0, 0.65);
     display: flex;
     justify-content: center;
@@ -12,7 +13,7 @@
     z-index: 999;
     padding: 1rem;
     box-sizing: border-box;
-overflow: auto;
+    overflow: auto;
 }
   
   /* Modal Content */
@@ -27,7 +28,6 @@ overflow: auto;
     animation: zoomFadeIn 0.4s ease-out forwards;
     transform: scale(0.85);
     opacity: 0;
- 
 
   }
   
@@ -68,10 +68,10 @@ overflow: auto;
   
   /* Image Preview */
   .modal-preview {
-    height:100%;
+    height:300px;
     border-radius: 8px;
     margin-top: 1rem;
-    object-fit: cover;
+
   }
   
   /* Buttons Section */
