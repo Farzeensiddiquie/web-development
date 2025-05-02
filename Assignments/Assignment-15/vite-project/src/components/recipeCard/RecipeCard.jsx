@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./RecipeCard.css";
-
+import Logo from "../logo/Logo";
 const RecipeCard = ({ recipe }) => {
   const [checked, setChecked] = useState({ ingredients: new Set(), instructions: new Set() });
 
@@ -16,6 +16,7 @@ const RecipeCard = ({ recipe }) => {
         <img src={recipe.image} alt={recipe.name} className="elegant-img" />
       </div>
       <div className="elegant-content">
+        <Logo/>
         <h2>{recipe.name}</h2>
         <div className="elegant-meta">
           <span>{recipe.cuisine} • {recipe.mealType.join(', ')}</span>

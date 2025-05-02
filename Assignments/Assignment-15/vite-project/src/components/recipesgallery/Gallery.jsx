@@ -25,6 +25,9 @@ const Gallery = () => {
 
   return (
     <>
+      <div className="gallery-wrapper">
+    <div className="gallery-container">
+        <h2 className="Gallery-heading">Some Sample Recipes</h2>
       <div className="gallery">
         {status === "loading" && <p>Loading recipes...</p>}
         {status === "failed" && <p>Error: {error}</p>}
@@ -45,7 +48,8 @@ const Gallery = () => {
           )
         )}
       </div>
-
+</div>
+</div>
       {selectedRecipe && (
         <div className="overlay">
           <div
@@ -56,6 +60,7 @@ const Gallery = () => {
             <RecipeCard recipe={selectedRecipe} />
           </div>
         </div>
+        
       )}
       <AddRecipe/>
     </>

@@ -1,14 +1,30 @@
 .gallery {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Exactly 4 per row on large screens */
+  grid-template-columns: repeat(
+    4,
+    1fr
+  ); /* Exactly 4 per row on large screens */
   gap: 1.5rem;
   padding: 2rem;
-  background-color: #0f0f0f;
-  background-image: url("https://www.transparenttextures.com/patterns/wave-grid.png");
-  background-repeat: repeat;
-  background-size: cover;
   min-height: 55vh;
+
   box-sizing: border-box;
+}
+
+  .gallery-wrapper {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url("../../assets/recipesBackground.jpg");
+    background-repeat: repeat;
+    background-size: cover;
+    padding: 1.5rem 0;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+  
+
+.Gallery-heading {
+  margin-left: 1.5rem;
+  padding-top: 1rem;
 }
 
 /* Responsive adjustments */
@@ -58,7 +74,10 @@
 /* Modal overlay */
 .overlay {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
