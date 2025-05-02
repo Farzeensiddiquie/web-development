@@ -53,158 +53,85 @@ export default function Recipes() {
   };
 
   return (
-    <>
-      <Navbar />
-      <div className="recipes-wrapper">
-      <div style={{ padding: 20 }}>
-        <h2>Your Recipes</h2>
+    <div className="create-recipe-container">
+      <h1>Create Recipe</h1>
+      <div className="create-recipe-form">
+        <input
+          type="text"
+          placeholder="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <textarea
+          placeholder="Ingredients (one per line)"
+          value={ingredients}
+          onChange={(e) => setIngredients(e.target.value)}
+        />
+        <textarea
+          placeholder="Instructions (one per line)"
+          value={instructions}
+          onChange={(e) => setInstructions(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Tags (comma separated)"
+          value={tags}
+          onChange={(e) => setTags(e.target.value)}
+        />
 
-        {loading && <p>Loading...</p>}
-        {error && <p style={{ color: "red" }}>Error: {error}</p>}
-        {!loading && firebaseRecipes.length === 0 && <p>No recipes available.</p>}
-
-        <div className="thumbnail-grid">
-          {firebaseRecipes.map((recipe) => (
-            <div
-              key={recipe.id}
-              className="thumbnail"
-              onClick={() => {
-                setChecked({ ingredients: new Set(), instructions: new Set() });
-                setViewRecipe(recipe);
-                setViewModalOpen(true);
-              }}
-            >
-              <img
-                src={recipe.image || "https://via.placeholder.com/300x200"}
-                alt={recipe.title || "Untitled"}
-                className="thumbnail-img"
-              />
-              <h4 className="thumbnail-title">{recipe.title || "Untitled"}</h4>
-            </div>
-          ))}
+        <div className="row-inputs">
+          <input
+            type="number"
+            placeholder="Prep Time (min)"
+            value={prepTimeMinutes}
+            onChange={(e) => setPrepTimeMinutes(e.target.value)}
+          />
+          <input
+            type="number"
+            placeholder="Cook Time (min)"
+            value={cookTimeMinutes}
+            onChange={(e) => setCookTimeMinutes(e.target.value)}
+          />
         </div>
 
-        {viewModalOpen && viewRecipe && (
-          <div className="custom-modal-overlay" onClick={() => setViewModalOpen(false)}>
-            <div className="custom-modal-content" onClick={(e) => e.stopPropagation()}>
-              <div className="elegant-card">
-                <div className="elegant-img-wrap">
-                  <img
-                    src={viewRecipe.image || "https://via.placeholder.com/300x200"}
-                    alt={viewRecipe.title || "Untitled"}
-                    className="elegant-img"
-                  />
-                </div>
+        <div className="row-inputs">
+          <input
+            type="number"
+            placeholder="Servings"
+            value={servings}
+            onChange={(e) => setServings(e.target.value)}
+          />
+          <input
+            type="number"
+            placeholder="Calories/Serving"
+            value={caloriesPerServing}
+            onChange={(e) => setCaloriesPerServing(e.target.value)}
+          />
+        </div>
 
-                <div className="elegant-content">
-                  <Logo/>
-                  <h2>{viewRecipe.title || "Untitled Recipe"}</h2>
+        <select value={type} onChange={(e) => setType(e.target.value)}>
+          <option value="">Select Type</option>
+          <option value="Breakfast">Breakfast</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Dinner">Dinner</option>
+          <option value="Dessert">Dessert</option>
+        </select>
 
-                  {viewRecipe.mealType?.[0] && (
-                    <p className="meal-type" data-type={viewRecipe.mealType[0]}>
-                       {viewRecipe.mealType[0]}
-                    </p>
-                  )}
-
-                  <div className="elegant-meta">
-                    <span>
-                      {viewRecipe.createdAt
-                        ? new Date(viewRecipe.createdAt).toLocaleDateString()
-                        : "Date Unknown"}
-                    </span>
-                    <span className="rating">⭐ 4.5 (100)</span>
-                  </div>
-
-                  <div className="elegant-tags">
-                    {viewRecipe.tags?.map((tag, idx) => (
-                      <span key={idx} className="tag">
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="elegant-details">
-                    {viewRecipe.prepTimeMinutes && (
-                      <span><strong>Prep:</strong> {viewRecipe.prepTimeMinutes} min</span>
-                    )}
-                    {viewRecipe.cookTimeMinutes && (
-                      <span><strong>Cook:</strong> {viewRecipe.cookTimeMinutes} min</span>
-                    )}
-                    {viewRecipe.servings && (
-                      <span><strong>Serves:</strong> {viewRecipe.servings}</span>
-                    )}
-                    {viewRecipe.caloriesPerServing && (
-                      <span><strong>Calories:</strong> {viewRecipe.caloriesPerServing}</span>
-                    )}
-                  </div>
-
-                  <div className="elegant-section">
-                    <h3>🛒 Ingredients</h3>
-                    {viewRecipe.ingredients?.map((item, idx) => (
-                      <label
-                        key={idx}
-                        className={`checkbox ${checked.ingredients.has(idx) ? "checked" : ""}`}
-                      >
-                        <input type="checkbox" onChange={() => toggleCheck("ingredients", idx)} />
-                        <span>{item}</span>
-                      </label>
-                    ))}
-                  </div>
-
-                  <div className="elegant-section">
-                    <h3>👨‍🍳 Instructions</h3>
-                    {viewRecipe.instructions?.map((step, idx) => (
-                      <label
-                        key={idx}
-                        className={`checkbox ${checked.instructions.has(idx) ? "checked" : ""}`}
-                      >
-                        <input type="checkbox" onChange={() => toggleCheck("instructions", idx)} />
-                        <span>{step}</span>
-                      </label>
-                    ))}
-                  </div>
-
-                  <div className="modal-buttons">
-                    <button
-                      className="delete-btn"
-                      style={{ backgroundColor: "transparent", border: "none" }}
-                      onClick={() => handleDelete(viewRecipe.id)}
-                    >
-                      <FontAwesomeIcon
-                        className="icon"
-                        style={{ color: '#f02929', fontSize: "20px" }}
-                        icon={faTrashCan}
-                      />
-                    </button>
-                    <button
-                      className="edit-btn"
-                      style={{ backgroundColor: "transparent", border: "none" }}
-                      onClick={() => {
-                        setEditingRecipe(viewRecipe);
-                        setEditModalOpen(true);
-                        setViewModalOpen(false);
-                      }}
-                    >
-                      <FontAwesomeIcon
-                        style={{ color: "#66bb6a", fontSize: "20px" }}
-                        icon={faPenToSquare}
-                      />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <input type="file" onChange={onChangeImageHandler} />
+        {image && (
+          <img
+            src={image}
+            alt="Uploaded"
+            className="preview-img"
+            onError={handleImageError} // In case of error, show fallback image
+          />
         )}
-
-        <Modal
-          modalIsOpen={editModalOpen}
-          setIsOpen={setEditModalOpen}
-          recipe={editingRecipe}
-          onUpdate={handleUpdate}
-        />
+        {loading && <p>Uploading...</p>}
+        <button onClick={onClickHandler} disabled={loading}>
+          {loading ? "Creating..." : "Create Recipe"}
+        </button>
       </div>
-      </div>
-    </>
+    </div>
   );
 }
+ 
