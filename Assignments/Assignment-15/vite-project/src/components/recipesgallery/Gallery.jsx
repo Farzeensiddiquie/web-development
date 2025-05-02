@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipes } from "../../features/counter/RecipesSlice";
 import RecipeCard from "../recipeCard/RecipeCard";
 import "./Gallery.css";
-import AddRecipe from "../addrecipe/AddRecipe";
+
 
 const Gallery = () => {
   const dispatch = useDispatch();
@@ -62,7 +62,6 @@ const Gallery = () => {
         </div>
         
       )}
-      <AddRecipe/>
     </>
   );
 };

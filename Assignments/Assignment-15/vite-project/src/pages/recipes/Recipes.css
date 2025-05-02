@@ -222,4 +222,21 @@ svg-inline--fa {
   font-weight: 500;
   letter-spacing: 0.4px;
 }
+.add-recipe-thumbnail {
+  background-color: rgba(102, 187, 106, 0.1); /* primary color with opacity */
+  border: 2px dashed rgba(102, 187, 106, 0.3);
+  color: #333;
+}
 
+.add-recipe-thumbnail:hover {
+  background-color: rgba(102, 187, 106, 0.2);
+  border-color: rgba(102, 187, 106, 0.7);
+}
+
+.thumbnail-add-icon {
+  color: rgba(102, 187, 106, 0.7);
+}
+
+.add-recipe-thumbnail:hover .thumbnail-add-icon {
+  color: rgba(102, 187, 106, 1);
+}
